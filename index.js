@@ -45,8 +45,10 @@ function loadConfig() {
     if (fs.existsSync(SETTINGS_FILE)) {
         const CFG_DATA = JSON.parse(fs.readFileSync(SETTINGS_FILE, 'utf8'));
         HEROKU_KEY = CFG_DATA.heroku_key;
+        TARGETPATH = CFG_DATA.target_path;
     } else {
         HEROKU_KEY = process.env.HEROKU_KEY;
+        TERGETPATH = process.env.TARGETPATH;
     }
     if (!HEROKU_KEY)
         throw 'Failed loading, missing API keys!'
@@ -63,7 +65,7 @@ function restartApp() {
     console.log('Restart of Speech-to-Text Bot triggered.')
     const options = {
         hostname: 'api.heroku.com',
-        path: '/apps/hawkinsr-speech-to-text/dynos',
+        path: TARGETPATH,
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
