@@ -48,7 +48,7 @@ function loadConfig() {
         TARGETPATH = CFG_DATA.target_path;
     } else {
         HEROKU_KEY = process.env.HEROKU_KEY;
-        TERGETPATH = process.env.TARGETPATH;
+        TARGETPATH = process.env.TARGETPATH;
     }
     if (!HEROKU_KEY)
         throw 'Failed loading, missing API keys!'
